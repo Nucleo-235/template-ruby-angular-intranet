@@ -1,0 +1,24 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    {{entry.name}} da {{entry.spot_owner.name}}
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/#/manage/spots"><i class="fa fa-dashboard"></i> Salas</a></li>
+    <li class="active">{{entry.name}}</li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="panel panel-default">
+    <div class="panel-heading">Editar</div>
+    <div class="panel-body">
+      <legend><i class="ion-clipboard"></i> Informações do Estúdio</legend>
+      <form method="post" ng-submit="saveEntity()">
+        <div ng-include="'app/views/spots/_form.html'">
+        </div>
+      </form>
+    </div>
+  </div>
+</section><!-- /.content -->

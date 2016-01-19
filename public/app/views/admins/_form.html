@@ -1,0 +1,17 @@
+<div class="form-group">
+  <label class="control-label"><i class="ion-person"></i> Nome</label>
+  <input type="text" class="form-control" ng-model="entry.name" placeholder="Nome do Admin Aqui" required />
+</div>
+<div class="form-group">
+  <label class="control-label"><i class="ion-person"></i> E-mail</label>
+  <input type="text" class="form-control" ng-model="entry.email" placeholder="E-mail do Admin Aqui" required />
+</div>
+<div class="form-group" ng-if="!entry.id">
+  <label class="control-label"><i class="ion-person"></i> Senha</label>
+  <input type="text" class="form-control" ng-model="entry.password" placeholder="Digite uma senha" required />
+</div>
+<div class="form-group" ng-if="!entry.id">
+  <label class="control-label"><i class="ion-person"></i> Confirmar Senha</label>
+  <input type="text" class="form-control" ng-model="entry.password_confirmation" placeholder="Confirme a senha" required />
+</div>
+<button class="btn btn-lg btn-success">Salvar</button>
