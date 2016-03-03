@@ -1,0 +1,12 @@
+div ng-repeat="field in mainResource.fields_before" ng-init="value=field.value(entity)"
+  div ng-if="!field.isCustom" ng-include="'app/views/default/write/default.html'"
+  div ng-if="field.isCustom" ng-include="'app/views/default/write/' + field.field_type + '.html'"
+div
+  .form-group
+    label.control-label Nome
+    input.form-control name="name" ng-model="entry.name" ng-required="true" type="text" /
+div ng-repeat="field in mainResource.fields_after" ng-init="value=field.value(entity)"
+  div ng-if="!field.isCustom" ng-include="'app/views/default/write/default.html'"
+  div ng-if="field.isCustom" ng-include="'app/views/default/write/' + field.field_type + '.html'"
+
+button.btn.btn-lg.btn-success.pull-right ng-disabled="isFormInvalid()"  Salvar

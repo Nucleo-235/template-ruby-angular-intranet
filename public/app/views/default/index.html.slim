@@ -1,0 +1,49 @@
+/! Content Header (Page header)
+section.content-header
+  h1
+    span 
+      | {{mainResource.name_plural}}
+  ol.breadcrumb
+    li
+      a href="/#/" 
+        i.fa.fa-dashboard
+        | Início
+    li.active 
+      | {{mainResource.name_plural}}
+/! Main content
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          h3.box-title ng-bind="mainResource.name_plural"
+        .box-body.table-responsive
+          table.table.table-hover.situations
+            tr
+              th.db-id ID
+              th ng-repeat="field in mainResource.fields_before"
+                | {{field.name}}
+              th Nome
+              th ng-repeat="field in mainResource.fields_after"
+                | {{field.name}}
+              th Ações
+            tr.situation ng-model="entity" ng-repeat=("entity in entities") situation-container="" 
+              td.db-id ng-bind="entity.id"
+              td ng-repeat="field in mainResource.fields_before" ng-init="value=field.value(entity)"
+                span ng-if="!field.isCustom" ng-bind="value.name"
+                span ng-if="field.isCustom" ng-include="'app/views/default/read/' + field.field_type + '.html'"
+              td ng-bind="entity.name"
+              td ng-repeat="field in mainResource.fields_after" ng-init="value=field.value(entity)"
+                span ng-if="!field.isCustom" ng-bind="value.name"
+                span ng-if="field.isCustom" ng-include="'app/views/default/read/' + field.field_type + '.html'"
+              td
+                a.btn.btn-info.btn-flat ng-click="editEntity(entity)" Editar
+                a.btn.btn-warning.btn-flat ng-click="deleteEntity(entity)" Remover
+                
+          uib-pagination boundary-links="true" items-per-page="numPerPage" ng-change="pageChanged()" ng-model="currentPage" total-items="totalCount" 
+        /! /.box-body
+        .box-footer.clearfix
+          a.pull-right.btn.btn-default href="" ng-click="newEntity()" Novo(a)
+
+      /! /.box
+/! /.content

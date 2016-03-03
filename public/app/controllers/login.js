@@ -1,14 +1,9 @@
 angular.module('MyApp')
   .controller('LoginCtrl', function($scope, $location, $auth, toastr) {
-    $scope.checkLogged = function() {
-      // if ($auth.userIsAuthenticated) { 
-      //   $location.path('/');
-      // }
-    };
     $scope.login = function() {
       $auth.submitLogin($scope.user)
         .then(function() {
-          toastr.success('You have successfully signed in!');
+          toastr.success('Logado com sucesso!');
           $location.path('/');
         })
         .catch(function(error) {
@@ -18,7 +13,7 @@ angular.module('MyApp')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function() {
-          toastr.success('You have successfully signed in with ' + provider + '!');
+          toastr.success('Logado com sucesso usando ' + provider + '!');
           $location.path('/');
         })
         .catch(function(error) {
@@ -33,6 +28,4 @@ angular.module('MyApp')
           }
         });
     };
-
-    $scope.checkLogged();
   });

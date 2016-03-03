@@ -1,0 +1,10 @@
+.form-group
+  label.control-label
+    i.ion-person
+    | Nome
+  input.form-control ng-model="entry.name" placeholder=("Nome da Construtora Aqui") required="" type="text" /
+.checkbox ng-if="entry.id && entry.id > 0"
+  label.control-label
+    input name="archived" ng-model="entry.archived" type="checkbox" /
+    | Arquivado
+button.btn.btn-lg.btn-success Salvar

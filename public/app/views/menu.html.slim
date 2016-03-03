@@ -1,0 +1,35 @@
+ul.sidebar-menu
+  li.header ng-if=("user.isAdmin")  ADMIN
+  li.treeview ng-if=("user.isAdmin") 
+    a href="#" 
+      i.fa.fa-users
+      span Usuários
+      i.fa.fa-angle-left.pull-right
+    ul.treeview-menu
+      li
+        a href="/#/manage/admins/" 
+          i.fa.fa-users
+          span Admins
+  / Exemplos CRUD (só para admins)
+  / li.treeview.active ng-if=("user.type == 'Admin'") 
+  /   a href="#"
+  /     i.fa.fa-cogs
+  /     span Configuração
+  /     i.fa.fa-angle-left.pull-right
+  /   ul.treeview-menu
+  /     li
+  /       a href="/#/manage/situation_types/" 
+  /         span Tipos de Situação
+  /     li
+  /       a href="/#/manage/situation_kinds/" 
+  /         span Naturezas de Situação
+  /     li
+  /       a href="/#/manage/situation_details/" 
+  /         span Detalhes de Situação
+  li.header ng-if=("!user.isAdmin")  MENU
+  / Exemplos Custom Entity
+  / li
+  /   a href="/#/manage/constructors" 
+  /     i.fa.fa-search
+  /     span Construtoras
+  

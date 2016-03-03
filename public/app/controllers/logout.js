@@ -1,12 +1,8 @@
 angular.module('MyApp')
   .controller('LogoutCtrl', function($location, $auth, toastr) {
-    if (!$auth.userIsAuthenticated()) { 
-      $location.path('/login');
-      return; 
-    }
     $auth.signOut()
       .then(function() {
-        toastr.info('You have been logged out');
+        toastr.info('Desconectado do sistema com sucesso.');
         $location.path('/login');
       });
   });

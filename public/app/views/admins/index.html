@@ -31,12 +31,14 @@
               <th>ID</th>
               <th>Nome</th>
               <th>Criado em</th>
+              <th>Último Login</th>
               <th class="text-center">Ações</th>
             </tr>
             <tr ng-repeat="admin in entitiesList">
               <td>{{admin.id}}</td>
               <td>{{admin.name}}</td>
-              <td>{{admin.created_at}}</td>
+              <td>{{admin.created_at | date: 'short'}}</td>
+              <td>{{entry.current_sign_in_at | date: 'short'}}</td>
               <td class="text-center">
                 <a ui-sref="manage.admins.edit({id:admin.id})" class="btn btn-info btn-flat">Editar</a>
                 <a ng-if="user.id != admin.id" ng-click="deleteEntity(admin)" class="btn btn-warning btn-flat">Remover</a>

@@ -1,0 +1,6 @@
+.form-group
+  label.control-label
+    | {{ field.name }}
+  select.form-control name="{{ field.property }}" ng-model="entry[field.property]" ng-options=("option as (field.valueWithBase(entry, option).name) for option in formData[field.property + '_list'] track by option.id") ng-required="true"
+    option ng-show=("formData[field.property + '_list'] && !formData[field.property + '_loading']") value=""  - Selecione {{ field.this_single }} {{ field.name_single }} -
+    option ng-hide=("formData[field.property + '_list'] && !formData[field.property + '_loading']") value=""  Carregando {{ field.name_plural }} ...

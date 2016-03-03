@@ -6575,7 +6575,7 @@
 	
 	/**
 	 * Computed structure of the DataTables API, defined by the options passed to
-	 * `DataTable.Api.register()` when spot the API.
+	 * `DataTable.Api.register()` when building the API.
 	 *
 	 * The structure is built in order to speed creation and extension of the Api
 	 * objects since the extensions are effectively pre-parsed.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jarvis Trader</title>
+  <title>Intranet</title>
   <link href="favicon.png" rel="shortcut icon">
 
   <!-- Tell the browser to be responsive to screen width -->
@@ -31,9 +31,14 @@
   <link rel="stylesheet" href="/vendor/plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="/vendor/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/vendor/plugins/datatables/dataTables.bootstrap.css">
 
   <link href="//cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
   <link href="/vendor/stylesheets/angular-toastr.css" rel="stylesheet">
+  <link href="/vendor/plugins/treetable/jquery.treetable.css" rel="stylesheet">
+  <link href="/vendor/plugins/treetable/jquery.treetable.theme.default.css" rel="stylesheet">
+  <link href="/vendor/stylesheets/angular-bootstrap-lightbox.min.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,24 +46,24 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <link href="/assets/stylesheets/styles.css" rel="stylesheet">
+  <link href="/assets/stylesheets/styles.scss" rel="stylesheet">
 </head>
-<body class="hold-transition skin-blue sidebar-mini" sidebar-directive="main" sidebar-css-hide-class="sidebar-collapse">
-  <div class="wrapper">
+<body class="hold-transition" ng-class="{'hold-transition skin-blue sidebar-mini':isAuthenticated(), 'hold-transition login-page':(!isAuthenticated())}" sidebar-directive="main" sidebar-css-hide-class="sidebar-collapse" ng-controller="MainCtrl">
+  <div class="wrapper" ng-if="isAuthenticated()">
 
     <header class="main-header">
       <!-- Logo -->
       <a href="/#/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">JT</span>
+        <span class="logo-mini">I</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Jarvis Trader</b></span>
+        <span class="logo-lg"><b>Intranet</b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav ng-controller="NavbarCtrl" class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" ng-show="isAuthenticated()" sidebar-toggler-directive="main">
-          <span class="sr-only">Toggle navigation</span>
+          <span class="sr-only">Alterar Barra Lateral</span>
         </a>
         <div class="navbar-custom-menu" ng-if="isAuthenticated()">
           <ul class="nav navbar-nav">
@@ -74,7 +79,7 @@
                   <img ng-src="{{ user.image_full_url || 'vendor/admin-lte/img/user2-160x160.jpg' }}" class="img-circle" alt="User Image">
                   <p>
                     {{user.name}}
-                    <small>Member since Nov. 2012 FIXO</small>
+                    <small>Membro desde {{user.created_at | date:'short'}}</small>
                   </p>
                 </li>
                 <!-- Menu Footer-->
@@ -119,25 +124,7 @@
           </form>
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">ADMIN</li>
-            <li>
-              <a href="/#/manage/admins/">
-                <i class="fa fa-users"></i> <span>Admins</span>
-              </a>
-            </li>
-            <!-- 
-            <li>
-              <a href="/#/manage/spot_owners/">
-                <i class="fa fa-music"></i> <span>Estúdios</span>
-              </a>
-            </li>
-            <li>
-              <a href="/#/manage/spots/">
-                <i class="fa fa-play"></i> <span>Salas</span>
-              </a>
-            </li> -->
-          </ul>
+          <div ng-include="'app/views/menu.html'"></div>
         </section>
         <!-- /.sidebar -->
       </aside>
@@ -152,12 +139,18 @@
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.3.0
+        <b>Version</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      <strong>Sistema criado e configurado por &copy; 2015-2016 <a href="http://nucleo235.com.br">Núcleo 235</a>.</strong> 
+      <strong class="designed-by pull-right">Tema criado por Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> 
     </footer>
 
   </div><!-- ./wrapper -->
+
+  <div class="login-box" ng-if="!isAuthenticated()">
+    <div ui-view=""></div>
+  </div>
+
   <!-- Base Scripts -->
   <script src="/vendor/plugins/jQuery/jQuery-2.1.4.min.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -175,11 +168,19 @@
   <script src="/vendor/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
   <script src="/vendor/plugins/slimScroll/jquery.slimscroll.min.js"></script>
   <script src="/vendor/plugins/fastclick/fastclick.min.js"></script>
+  <script src="/vendor/plugins/chartjs/Chart.min.js"></script>
   <script src="/vendor/admin-lte/js/app.min.js"></script>
+  <!-- DataTables -->
+  <script src="/vendor/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="/vendor/plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <script src="/vendor/plugins/treetable/jquery.treetable.js"></script>
   <script src="/assets/scripts/demo.js"></script>
 
   <!-- Third-party Libraries -->
   <script src="/vendor/scripts/angular.js"></script>
+  <script src="/vendor/scripts/angularjs-rails-resource.js"></script>
+  <script src="/vendor/scripts/angularjs-rails-resource-snapshots.js"></script>
+  <script src="/vendor/scripts/angular-locale_pt-br.js"></script>
   <script src="/vendor/scripts/angular-animate.js"></script>
   <script src="/vendor/scripts/angular-messages.js"></script>
   <script src="/vendor/scripts/angular-resource.js"></script>
@@ -188,16 +189,29 @@
   <script src="/vendor/scripts/angular-toastr.tpls.js"></script>
   <script src="/vendor/scripts/angular-cookie.js"></script>
   <script src="/vendor/scripts/ng-token-auth.js"></script>
+  <script src="/vendor/scripts/ui-bootstrap-tpls-1.0.3.js"></script>
   <script src="/vendor/scripts/ng-file-upload-shim.min.js"></script>
   <script src="/vendor/scripts/ng-file-upload.min.js"></script>
+  <script src="/vendor/scripts/angular-datatables.js"></script>
+  <script src="/vendor/scripts/angular-treetable.min.js"></script>
+  <script src="/vendor/scripts/angular-bootstrap-lightbox.min.js"></script>
+  <script src="/vendor/scripts/angular-chart.min.js"></script>
+  <script src="/assets/scripts/main.js"></script>
 
   <!-- Application Code -->
+  <script src="/app/services/entity.js"></script>
   <script src="/app/app.js"></script>
   <script src="/app/directives/passwordStrength.js"></script>
   <script src="/app/directives/passwordMatch.js"></script>
   <script src="/app/directives/previousState.js"></script>
   <script src="/app/directives/store.js"></script>
   <script src="/app/directives/sidebar.js"></script>
+  <script src="/app/directives/paging-interceptor.js"></script>
+  <!-- EXEMPLOS DE FILTROS
+  <script src="/app/filters/permissions.js"></script>
+  <script src="/app/filters/buildings.js"></script> -->
+  <script src="/app/controllers/default_crud.js"></script>
+  <script src="/app/controllers/main.js"></script>
   <script src="/app/controllers/home.js"></script>
   <script src="/app/controllers/login.js"></script>
   <script src="/app/controllers/signup.js"></script>
@@ -205,12 +219,20 @@
   <script src="/app/controllers/profile.js"></script>
   <script src="/app/controllers/navbar.js"></script>
   <script src="/app/controllers/sidebar.js"></script>
+  <script src="/app/controllers/image-modal.js"></script>
   <script src="/app/controllers/admins/crud.js"></script>
-  <!--<script src="/app/controllers/spot_owners/crud.js"></script>-->
-  <!--<script src="/app/controllers/spots/crud.js"></script>-->
+  <!-- EXEMPLOS CONTROLLERS
+  <script src="/app/controllers/constructors/crud.js"></script>
+  <script src="/app/controllers/buildings/crud.js"></script> -->
+  <script src="/app/services/serializers.js"></script>
   <script src="/app/services/admin.js"></script>
-  <!--<script src="/app/services/spot_owner.js"></script>-->
-  <!--<script src="/app/services/spot.js"></script>-->
+  <!-- EXEMPLOS SERVICES CUSTOM
+  <script src="/app/services/constructor.js"></script>
+  <script src="/app/services/building.js"></script> -->
+  <!-- EXEMPLOS SERVICES CRUD PADRAO
+  <script src="/app/services/situation_type.js"></script>
+  <script src="/app/services/situation_kind.js"></script>
+  <script src="/app/services/situation_detail.js"></script> -->
   <script src="/app/services/account.js"></script>
-</body>
+  </body>
 </html>

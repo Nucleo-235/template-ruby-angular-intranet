@@ -1,0 +1,15 @@
+.modal-body ng-swipe-left="Lightbox.nextImage()" ng-swipe-right="Lightbox.prevImage()" 
+  .lightbox-nav
+    button.close aria-hidden="true" ng-click="$dismiss()"  ×
+    .btn-group ng-if=("Lightbox.images.length > 1") 
+      a.btn.btn-xs.btn-default ng-click="Lightbox.prevImage()"  ‹ Anterior
+      a.btn.btn-xs.btn-default ng-href="{{Lightbox.imageUrl}}" target="_blank" title=("Open in new tab")  Abrir em nova aba
+      a.btn.btn-xs.btn-default ng-click="Lightbox.nextImage()"  Próxima ›
+  .lightbox-image-container
+    .lightbox-image-caption
+      span  {Lightbox.imageCaption} 
+    img lightbox-src="{{Lightbox.imageUrl}}" ng-if="!Lightbox.isVideo(Lightbox.image)" /
+    .embed-responsive.embed-responsive-16by9 ng-if="Lightbox.isVideo(Lightbox.image)" 
+      video autoplay="" controls="" lightbox-src="{{Lightbox.imageUrl}}" ng-if="!Lightbox.isSharedVideo(Lightbox.image)" 
+      embed-video.embed-responsive-item iframe-id="lightbox-video" lightbox-src="{{Lightbox.imageUrl}}" ng-href="{{Lightbox.imageUrl}}" ng-if="Lightbox.isSharedVideo(Lightbox.image)" 
+        a ng-href="{{Lightbox.imageUrl}}"  Ver vídeo

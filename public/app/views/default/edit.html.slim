@@ -1,0 +1,25 @@
+/! Content Header (Page header)
+section.content-header
+  h1
+    | {{ mainResource.name_single }}
+    small
+      | {{entry.name}}
+
+  ol.breadcrumb
+    li
+      a href="/#/manage/customer_engineers" 
+        i.fa.fa-dashboard
+        | {{ mainResource.name_plural }}
+    li.active 
+      | {{entry.name}}
+
+/! Main content
+section.content
+  .panel.panel-default
+    .panel-heading Editar
+    .panel-body
+      legend
+        i.ion-clipboard
+        | Informações do {{ mainResource.name_single }} 
+      form method="post" ng-submit="saveEntity()" 
+        div ng-include="'app/views/default/_form.html'"

@@ -1,0 +1,4 @@
+.form-group
+  label.control-label
+    | {{field.name}}
+  input.form-control name="{{ field.property }}" ng-model="entry[field.property]" ng-required="true" type="text" /
