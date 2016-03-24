@@ -21,19 +21,19 @@ section.content
           table.table.table-hover.situations
             tr
               th.db-id ID
-              th ng-repeat="field in mainResource.fields_before"
+              th ng-repeat="field in mainResource.fields_before | filter:{hide_on_list:'!true'}"
                 | {{field.name}}
               th Nome
-              th ng-repeat="field in mainResource.fields_after"
+              th ng-repeat="field in mainResource.fields_after | filter:{hide_on_list:'!true'}"
                 | {{field.name}}
               th Ações
             tr.situation ng-model="entity" ng-repeat=("entity in entities") situation-container="" 
               td.db-id ng-bind="entity.id"
-              td ng-repeat="field in mainResource.fields_before" ng-init="value=field.value(entity)"
+              td ng-repeat="field in mainResource.fields_before | filter:{hide_on_list:'!true'}" ng-init="value=field.value(entity)"
                 span ng-if="!field.isCustom" ng-bind="value.name"
                 span ng-if="field.isCustom" ng-include="'app/views/default/read/' + field.field_type + '.html'"
               td ng-bind="entity.name"
-              td ng-repeat="field in mainResource.fields_after" ng-init="value=field.value(entity)"
+              td ng-repeat="field in mainResource.fields_after | filter:{hide_on_list:'!true'}" ng-init="value=field.value(entity)"
                 span ng-if="!field.isCustom" ng-bind="value.name"
                 span ng-if="field.isCustom" ng-include="'app/views/default/read/' + field.field_type + '.html'"
               td
