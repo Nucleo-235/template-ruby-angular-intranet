@@ -63,6 +63,26 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
         url: '/edit/:id',
         templateUrl: 'app/views/admins/edit.html',
         controller: 'AdminEditCtrl'
+      })
+      .state('manage.menu_items', {
+        url: '/menu_items',
+        abstract: true,
+        template: '<ui-view/>'
+      })
+      .state('manage.menu_items.index', {
+        url: '/',
+        templateUrl: 'app/views/menu_items/index.html',
+        controller: 'MenuItemIndexCtrl'
+      })
+      .state('manage.menu_items.new', {
+        url: '/new/:constructor_id',
+        templateUrl: 'app/views/menu_items/new.html',
+        controller: 'MenuItemNewCtrl'
+      })
+      .state('manage.menu_items.edit', { //state for updating a movie
+        url: '/edit/:id',
+        templateUrl: 'app/views/menu_items/edit.html',
+        controller: 'MenuItemEditCtrl'
       });
       // Exemplo states 
       // .state('manage.constructors', {
@@ -84,26 +104,6 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
       //   url: '/edit/:id',
       //   templateUrl: 'app/views/constructors/edit.html',
       //   controller: 'ConstructorEditCtrl'
-      // })
-      // .state('manage.buildings', {
-      //   url: '/buildings',
-      //   abstract: true,
-      //   template: '<ui-view/>'
-      // })
-      // .state('manage.buildings.index', {
-      //   url: '/:constructor_id',
-      //   templateUrl: 'app/views/buildings/index.html',
-      //   controller: 'BuildingIndexCtrl'
-      // })
-      // .state('manage.buildings.new', {
-      //   url: '/new/:constructor_id',
-      //   templateUrl: 'app/views/buildings/new.html',
-      //   controller: 'BuildingNewCtrl'
-      // })
-      // .state('manage.buildings.edit', { //state for updating a movie
-      //   url: '/edit/:id',
-      //   templateUrl: 'app/views/buildings/edit.html',
-      //   controller: 'BuildingEditCtrl'
       // });
     
     // Exemplos configuração services/controllers/models CRUD padrao

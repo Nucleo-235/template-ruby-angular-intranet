@@ -30,28 +30,26 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th>ID</th>
               <th>Nome</th>
-              <th>Construtora</th>
-              <th>Arquivada?</th>
-              <th>Criada em</th>
-              <th ng-if="user.type == 'Admin'">Ações</th>
+              <th>Tipo</th>
+              <th>Link/Pagina</th>
+              <th>Ordem</th>
+              <th>Ações</th>
             </tr>
             <tr ng-repeat="entity in entitiesList">
-              <td>{{entity.id}}</td>
               <td>{{entity.name}}</td>
-              <td>{{entity.constructor_name}}</td>
-              <td>{{entity.archived ? 'Arquivada' : 'Ativa'}}</td>
-              <td>{{entity.created_at | date: 'short'}}</td>
-              <td ng-if="user.type == 'Admin'">
-                <a ui-sref="manage.buildings.edit({id:entity.id})" class="btn btn-info btn-flat">Editar</a>
+              <td>{{entity.link.type | nameByType:link_types }}</td>
+              <td>{{entity.link.type | valueByType:link_types:entity.link }}</td>
+              <td>{{entity.sort_order }}</td>
+              <td>
+                <a ui-sref="manage.menu_items.edit({id:entity.id})" class="btn btn-info btn-flat">Editar</a>
                 <a ng-click="deleteEntity(entity)" class="btn btn-warning btn-flat">Remover</a>
               </td>
             </tr>
           </table>
         </div><!-- /.box-body -->
         <div class="box-footer clearfix">
-          <a ng-if="constructor && user.type == 'Admin'" ui-sref="manage.buildings.new({constructor_id:constructor.id})" class="pull-right btn btn-default">Nova</a>
+          <a ui-sref="manage.menu_items.new()" class="pull-right btn btn-default">Novo</a>
         </div>
       </div><!-- /.box -->
     </div>

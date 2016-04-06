@@ -1,0 +1,25 @@
+.row
+  .col-md-6
+    .form-group
+      label.control-label
+        i.ion-person
+        | Nome
+      input.form-control ng-model="entry.name" placeholder="[Digite o nome]]" required="true" type="text" /
+  .col-md-6
+    .form-group
+      label.control-label Ordem
+      input.form-control ng-model="entry.sort_order" placeholder="[Digite a ordem]" required="" type="text" /
+.form-group
+  label.control-label
+    | Tipo
+  select.form-control name="link_type" ng-change="linkTypeChanged()" placeholder="[Selecione o tipo]" ng-model="entry.link.type" ng-options="typeItem.type as typeItem.name for typeItem in link_types" ng-required="true" 
+.form-group ng-if="!entry.link.type || entry.link.type == 'InternalLink'"
+  label.control-label
+    | Página
+  select.form-control name="page" ng-change="pageChanged()" placeholder="[Selecione a página]" ng-model="entry.link.page" ng-options="page as page.name for page in pages" ng-required="true" 
+.form-group ng-if="entry.link.type && entry.link.type == 'ExternalLink'"
+  label.control-label
+    | Endereço
+  input.form-control ng-model="entry.link.url" placeholder="[Digite o endereço]]" required="true" type="text" /
+
+button.pull-right.btn.btn-lg.btn-success Salvar

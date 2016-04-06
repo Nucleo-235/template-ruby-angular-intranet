@@ -1,10 +1,10 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    {{entry.name}} da {{entry.constructor.name}}
+    {{entry.name}}
   </h1>
   <ol class="breadcrumb">
-    <li><a href="/#/manage/buildings"><i class="fa fa-dashboard"></i> Obras</a></li>
+    <li><a href="/#/manage/menu_items"><i class="fa fa-dashboard"></i> Itens do Menu</a></li>
     <li class="active">{{entry.name}}</li>
   </ol>
 </section>
@@ -14,9 +14,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">Editar</div>
     <div class="panel-body">
-      <legend><i class="ion-clipboard"></i> Informações da Construtora</legend>
+      <legend><i class="ion-clipboard"></i> Informações do Item do Menu</legend>
       <form method="post" ng-submit="saveEntity()">
-        <div ng-include="'app/views/buildings/_form.html'">
+        <div ng-include="'app/views/menu_items/_form.html'">
         </div>
       </form>
     </div>
