@@ -170,7 +170,7 @@ function onDependentChanged(dependencyData, entity, evChange, evClear) {
 }
 
 function loadFormLists($scope) {
-  var dependecyData = loadDependnecies($scope.mainResource);
+  var dependecyData = loadDependencies($scope.mainResource);
   $scope.dependencyMap = dependecyData.dependencyMap;
 
   for (var fieldProperty in $scope.dependencyMap) {
@@ -209,7 +209,7 @@ function setChildrenIDs($scope) {
   }
 };
 
-function loadDependnecies(resource) {
+function loadDependencies(resource) {
   var result = { notDependents: [], dependents: [], dependencyMap: {} }
 
   function checkList(result, fields) {
