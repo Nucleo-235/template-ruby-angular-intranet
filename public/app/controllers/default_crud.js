@@ -6,6 +6,7 @@ function CRUDIndex($scope, $state, toastr, resource, standard_route) {
 
   this.$scope.standard_route = standard_route;
   this.$scope.mainResource = resource;
+  this.$scope.formData = { search:null }
 
   this.$scope.currentPage = 1;
   this.$scope.numPerPage = 10;
@@ -23,7 +24,10 @@ function CRUDIndex($scope, $state, toastr, resource, standard_route) {
   this.$scope.newEntity = function() {
     return self.newEntity();
   };
-
+  this.$scope.search = function() {
+    self.$scope.currentPage = 1;
+    return self.loadEntities();
+  };
   $scope.pageChanged = function() {
     return self.loadEntities();
   };
@@ -33,7 +37,13 @@ function CRUDIndex($scope, $state, toastr, resource, standard_route) {
 
 CRUDIndex.prototype.loadEntities = function() {
   var self = this;
-  return self.$scope.mainResource.query({page: self.$scope.currentPage, per_page: self.$scope.numPerPage}).then(function(data) {
+  var params = {page: self.$scope.currentPage, per_page: self.$scope.numPerPage};
+  
+  // verifica se tem que fazer busca
+  if (self.$scope.formData.search != null && self.$scope.formData.search.trim().length > 0)
+    params["search"] = self.$scope.formData.search.trim();
+  
+  return self.$scope.mainResource.query(params).then(function(data) {
       self.$scope.totalCount = data.total;
       self.$scope.entities = data;
     }, function(error) {

@@ -17,6 +17,13 @@ section.content
       .box
         .box-header
           h3.box-title ng-bind="mainResource.name_plural"
+          .box-tools
+            form ng-submit="search()"
+              .input-group.input-group-sm style=("width: 200px;") 
+                input.form-control.pull-right name="table_search" placeholder="Search" type="text" ng-model="formData.search" /
+                .input-group-btn
+                  button.btn.btn-default type="submit" 
+                    i.fa.fa-search
         .box-body.table-responsive
           table.table.table-hover.situations
             tr
