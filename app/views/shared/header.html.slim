@@ -1,0 +1,33 @@
+header.main-header
+  /! Logo
+  a.logo href="/#/" 
+    /! mini logo for sidebar mini 50x50 pixels
+    span.logo-mini I
+    /! logo for regular state and mobile devices
+    span.logo-lg
+      b Intranet
+  /! Header Navbar: style can be found in header.less
+  nav.navbar.navbar-static-top ng-controller="NavbarCtrl" role="navigation" 
+    /! Sidebar toggle button
+    a.sidebar-toggle data-toggle="offcanvas" href="#" ng-show="isAuthenticated()" role="button" sidebar-toggler-directive="main" 
+      span.sr-only Alterar Barra Lateral
+    .navbar-custom-menu ng-if="isAuthenticated()" 
+      ul.nav.navbar-nav
+        /! User Account: style can be found in dropdown.less
+        li.dropdown.user.user-menu
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            img.user-image alt=("User Image") ng-src=("{{ user.image_full_url || 'vendor/admin-lte/img/user2-160x160.jpg' }}") /
+            span.hidden-xs  {user.name} 
+          ul.dropdown-menu
+            /! User image
+            li.user-header
+              img.img-circle alt=("User Image") ng-src=("{{ user.image_full_url || 'vendor/admin-lte/img/user2-160x160.jpg' }}") /
+              p
+                | {{user.name}}
+                small Membro desde  {user.created_at | date:'short'} 
+            /! Menu Footer
+            li.user-footer
+              .pull-left
+                a.btn.btn-default.btn-flat href="/#/manage/profile"  Perfil
+              .pull-right
+                a.btn.btn-default.btn-flat href="/#/logout"  Sair

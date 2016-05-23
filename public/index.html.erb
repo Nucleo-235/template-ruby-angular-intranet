@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Intranet</title>
+  <link href="favicon.png" rel="shortcut icon">
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  
+  <%=partial('app/views/shared/head.html.slim') %>
+</head>
+<body class="hold-transition" ng-class="{'hold-transition skin-blue sidebar-mini':isAuthenticated(), 'hold-transition login-page':(!isAuthenticated())}" sidebar-directive="main" sidebar-css-hide-class="sidebar-collapse" ng-controller="MainCtrl">
+  <div class="wrapper" ng-if="isAuthenticated()">
+
+    <%=partial('app/views/shared/header.html.slim') %>
+
+    <%=partial('app/views/shared/sidebar.html.slim') %>    
+
+    <%=partial('app/views/pages/main.html.slim') %>  
+
+    <%=partial('app/views/shared/footer.html.slim') %>
+
+  </div><!-- ./wrapper -->
+
+  <%=partial('app/views/pages/login.html.slim') %>  
+
+  <%=partial('app/views/shared/footer_scripts.html.slim') %>
+  <%=partial('app/views/shared/footer_app.html.slim') %>
+  
+  </body>
+</html>
