@@ -1,5 +1,5 @@
 <% apiFinalURL = (ENV["API_URL"] ? ENV["API_URL"] : "http://localhost:3000") %>
-angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'ng-token-auth', 'ui.bootstrap', 'ngFileUpload', 'ngTreetable', 'bootstrapLightbox', 'rails', 'chart.js'])
+angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'ng-token-auth', 'ui.bootstrap', 'ngFileUpload', 'ngTreetable', 'bootstrapLightbox', 'rails', 'chart.js', 'ui.bootstrap.showErrors'])
   .config(function($stateProvider, $urlRouterProvider, $authProvider) {
     $stateProvider
       .state('login', {

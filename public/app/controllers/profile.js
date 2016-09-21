@@ -1,12 +1,10 @@
 angular.module('MyApp')
-  .controller('ProfileCtrl', function($scope, $auth, toastr, Account, Upload) {
+  .controller('ProfileCtrl', function($scope, $auth, $location, toastr, Account, Upload) {
     $scope.updateProfile = function() {
       $auth.updateAccount($scope.user)
         .then(function(response) {
           // $scope.user = response.data.data;
-
-          if (!$scope.saveImageIfChanged())
-            toastr.success('Perfil atualizado com sucesso');
+          $scope.saveImageIfChanged();
         })
         .catch(function(response) {
           toastr.error(response.data.message, response.status);
@@ -34,9 +32,10 @@ angular.module('MyApp')
             else
               toastr.error(response, response);
           });
-        return true;
       }
-      else
-        return false;
+      else {
+        toastr.success('Perfil atualizado com sucesso');
+        $location.path('/');
+      }
     };
   });

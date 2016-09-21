@@ -25,13 +25,21 @@
               ngf-accept="'image/*'" ngf-max-size="3MB" ngf-min-height="100" 
               ngf-resize="{width: 100, height: 100}">Selecionar</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" show-errors="">
             <label class="control-label"><i class="ion-person"></i> Nome</label>
-            <input type="text" class="form-control" ng-model="user.name" />
+            <input name="name" type="text" class="form-control" ng-model="user.name" />
           </div>
-          <div class="form-group">
+          <div class="form-group" show-errors="">
             <label class="control-label"><i class="ion-at"></i> Email</label>
-            <input type="email" class="form-control" ng-model="user.email" />
+            <input name="email" type="email" class="form-control" ng-model="user.email" />
+          </div>
+          <div class="form-group" show-errors="">
+            <label class="control-label"><i class="ion-key"></i> Alterar Senha</label>
+            <input name="password" type="password" class="form-control" ng-model="user.password" />
+          </div>
+          <div class="form-group" show-errors="">
+            <label class="control-label"><i class="ion-key"></i> Cofirmar Senha Alterada</label>
+            <input name="password_confirmation" type="password" class="form-control" ng-model="user.password_confirmation" />
           </div>
           <button class="btn btn-lg btn-success">Salvar</button>
         </form>
