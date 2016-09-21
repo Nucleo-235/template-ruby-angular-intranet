@@ -7,7 +7,13 @@ angular.module('MyApp')
           $location.path('/');
         })
         .catch(function(error) {
-          toastr.error(error.data.message, error.status);
+          if (error.reason == "unauthorized") {
+            console.log(error);
+            toastr.error('Usuário e/ou senha inválidos', error.status);
+          } else {
+            console.log(error);
+            processFailureErrors(error, $scope, $scope.loginForm);  
+          }
         });
     };
     $scope.authenticate = function(provider) {
