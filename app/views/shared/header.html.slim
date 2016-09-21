@@ -15,16 +15,16 @@ header.main-header
       ul.nav.navbar-nav
         /! User Account: style can be found in dropdown.less
         li.dropdown.user.user-menu
-          a.dropdown-toggle data-toggle="dropdown" href="#" 
-            img.user-image alt=("User Image") ng-src=("{{ user.image_full_url || 'vendor/admin-lte/img/user2-160x160.jpg' }}") /
-            span.hidden-xs  {user.name} 
+          a.dropdown-toggle data-toggle="dropdown" href="javascript:void(0)" 
+            img.user-image alt=("User Image") ng-src='{{ user.image_full_url || "#{image_path('avatar-160x160.jpg')}" }}' /
+            span.hidden-xs ng-bind="user.name"
           ul.dropdown-menu
             /! User image
             li.user-header
-              img.img-circle alt=("User Image") ng-src=("{{ user.image_full_url || 'vendor/admin-lte/img/user2-160x160.jpg' }}") /
+              img.img-circle alt=("User Image") ng-src='{{ user.image_full_url || "#{image_path('avatar-160x160.jpg')}" }}' /
               p
                 | {{user.name}}
-                small Membro desde  {user.created_at | date:'short'} 
+                small Membro desde  {{user.created_at | date:'short'}}
             /! Menu Footer
             li.user-footer
               .pull-left
